@@ -15,6 +15,7 @@ def set_brightness(case, value):
     try:
         value = int(value)
     except TypeError or ValueError:
+        pass
         case = 3
     if case == 0:  # Set absolute brightness
         sbc.set_brightness(value)
