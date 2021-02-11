@@ -1,0 +1,15 @@
+    >>> jackhammer = sr.AudioFile('jackhammer.wav')
+    >>> with jackhammer as source:
+    ...     audio = r.record(source)
+    ...
+    >>> r.recognize_google(audio)
+    'the snail smell of old gear vendors'
+
+how do you deal with this?^^ One thing you can try is using the adjust_for_ambient_noise()
+
+>>> with jackhammer as source:
+...     r.adjust_for_ambient_noise(source)
+...     audio = r.record(source)
+...
+>>> r.recognize_google(audio)
+'still smell of old beer vendors'
