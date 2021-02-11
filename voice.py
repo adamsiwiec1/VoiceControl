@@ -14,8 +14,8 @@ from spotipy.oauth2 import SpotifyOAuth, SpotifyClientCredentials
 
 # Spotipy - full access to music data but dont think you can play. Possibly look up uri's?
 
-sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id="1a1b29ec4ca0490d960ea3af156bf040",
-                                                client_secret="324fc99174ed4f55a62fcc2f22409dac",
+sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id="sorry",
+                                                client_secret="gitgaurdian",
                                                 redirect_uri="https://developer.spotify.com/dashboard/applications/1a1b29ec4ca0490d960ea3af156bf040",
                                                 scope="user-library-read"))
 
