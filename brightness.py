@@ -29,6 +29,12 @@ def set_brightness(case, value):
         brightness = sbc.get_brightness(display=1)
         engine.say(f"Your new brightness level is {brightness}")
 
+
+
+
+
+
+
 # get_brightness()
 # set_brightness(0, 20)
 

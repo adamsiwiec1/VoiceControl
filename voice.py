@@ -14,13 +14,13 @@ from spotipy.oauth2 import SpotifyOAuth, SpotifyClientCredentials
 
 # Spotipy - full access to music data but dont think you can play. Possibly look up uri's?
 
-sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id="1a1b29ec4ca0490d960ea3af156bf040",
-                                                client_secret="324fc99174ed4f55a62fcc2f22409dac",
-                                                redirect_uri="https://developer.spotify.com/dashboard/applications/1a1b29ec4ca0490d960ea3af156bf040",
-                                                scope="user-library-read"))
+#sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="1a1b29ec4ca0490d960ea3af156bf040",
+ #                                               client_secret="324fc99174ed4f55a62fcc2f22409dac")
+                                                # #redirect_uri="https://developer.spotify.com/dashboard/applications/1a1b#29ec4ca0490d960ea3af156bf040",
+                                                # scope="user-library-read"))
 
 # sp.current_user_saved_tracks()
-sp.start_playback(uris=['spotify:track:6gdLoMygLsgktydTQ71b15'])
+#sp.start_playback(uris=['spotify:track:6gdLoMygLsgktydTQ71b15'])
 
 
 listener = sr.Recognizer()
@@ -37,21 +37,6 @@ def talk(text):
     engine.say(text)
     engine.runAndWait()  # need this to say it
 
-# def listen4_start():
-#     try:
-#         with sr.Microphone() as source:
-#             print('waiting...')
-#             voice = listener.listen(source)
-#             command = listener.recognize_google(voice)
-#             command = command.lower()
-#             while 'stop' not in command:
-#                 if 'alexa' in command:
-#                     print("running alexa...")
-#                     run_alexa()
-#     except:  # AttributeError or Exception as e:
-#         # print(f"Encountered an error.. ({e})")
-#         pass
-
 
 def listen4_command():
     try:
@@ -59,7 +44,7 @@ def listen4_command():
             voice = listener.listen(source)
             command = listener.recognize_google(voice)
             command = command.lower()
-            if 'alexa' in command:
+            if 'stupid' in command:
                 return command
     # except AttributeError or Exception or sr.UnknownValueError as e:
     #     print(f"Encountered an error.. ({e})")
@@ -91,10 +76,10 @@ def wait_for_response():
 
 
 def play_song(command):
-    print(s.get_current_status(s))
-    print(s.connect(s))
-    s.skip(s)
-    print(s.skip(s))
+#    print(s.get_current_status(s))
+#   print(s.connect(s))
+#    s.skip(s)
+#    print(s.skip(s))
     song = command.replace('play', '')
     song2 = command.rsplit('play', 2)
     try:
@@ -118,8 +103,8 @@ def run_alexa():
     # talk("Hello, my name is Log. I am here to serve you.")
     command = wait_for_response()
     print(command)
-    if 'hi alexa' in command:
-        talk('hi you stupid dummy cunt bag')
+    if 'hi stoopid' in command:
+        talk('hi how can i help you')
     elif 'google' in command:
         google(command)
         talk(f"Searching for {command}")
@@ -135,6 +120,8 @@ def run_alexa():
             if 'specific' or "specifically" in command:
                 talk("Specifically? Ok. What level?")
                 command = raw_command()
+                while command is None:
+                    command = raw_command()
                 set_brightness(0, command)
             if 'relative' in command:
                 talk("Would you like to increase or decrease your brightness?")
@@ -142,10 +129,14 @@ def run_alexa():
                 if 'increase' in command:
                     talk("By how much? Please say a number")
                     command = raw_command()
+                    while command is None:
+                        command = raw_command()
                     set_brightness(1, int(command))
                 if 'decrease' in command:
                     talk("By how much? Please say a number")
                     command = raw_command()
+                    while command is None:
+                        command = raw_command()
                     set_brightness(2, command)
         if 'no' in command:
             talk('Restarting')
